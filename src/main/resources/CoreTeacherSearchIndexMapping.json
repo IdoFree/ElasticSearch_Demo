@@ -1,0 +1,114 @@
+{
+  "mappings": {
+    "core_teacher_search_index" : {
+      "properties" : {
+        "teacherID" : {
+          "type" :    "integer"
+        },
+        "phone" : {
+          "type" :   "string"
+        },
+        "name" : {
+          "type" :   "string",
+          "analyzer": "chinese"
+        },
+        "gender" : {
+          "type" :   "byte"
+        },
+        "type" : {
+          "type" :   "byte"
+        },
+        "stars" : {
+          "type" :   "byte"
+        },
+        "careerTime" : {
+          "type" :   "short"
+        },
+        "availableServices" : {
+          "type" :   "byte"
+        },
+        "degree" : {
+          "type" :   "integer"
+        },
+        "university" : {
+          "type" :   "string",
+          "analyzer": "chinese"
+        },
+        "major" : {
+          "type" :   "string",
+          "analyzer": "chinese"
+        },
+        "students" : {
+          "type" :   "integer"
+        },
+        "lessons" : {
+          "type" :   "integer"
+        },
+        "scores" : {
+          "type" :   "double"
+        },
+        "regionName" : {
+          "type" :   "string",
+          "analyzer": "chinese"
+        },
+        "regionID" : {
+          "type" :   "integer"
+        },
+        "cityName" : {
+          "type" :   "string",
+          "analyzer": "chinese"
+        },
+        "cityID" : {
+          "type" :   "integer"
+        },
+        "zoneName" : {
+          "type" :   "string",
+          "analyzer": "chinese"
+        },
+        "zoneID" : {
+          "type" :   "string"
+        },
+        "courseCategoryID" : {
+          "type" :   "string"
+        },
+        "courseCategoryName" : {
+          "type" :   "string",
+          "analyzer": "chinese"
+        },
+        "courseName" : {
+          "type" :   "string"
+        },
+        "courseID" : {
+          "type" :   "string"
+        },
+        "monday" : {
+          "type" :   "byte"
+        },
+        "tuesday" : {
+          "type" :   "byte"
+        },
+        "wednesday" : {
+          "type" :   "byte"
+        },
+        "thursday" : {
+          "type" :   "byte"
+        },
+        "friday" : {
+          "type" :   "byte"
+        },
+        "saturday" : {
+          "type" :   "byte"
+        },
+        "sunday" : {
+          "type" :   "byte"
+        },
+        "updatedTime" : {
+          "type" :   "date"
+        },
+        "priceLowest" : {
+          "type" :   "double"
+        }
+      }
+    }
+  }
+}

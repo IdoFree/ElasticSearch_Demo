@@ -1,6 +1,10 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.model.CoreTeacher;
+import com.example.demo.model.CoreTeacherSearchIndex;
 import com.example.demo.model.Teacher;
+import com.example.demo.repository.CoreTeacherSearchIndexRepository;
+import com.example.demo.service.CoreTeacherSearchIndexService;
 import com.example.demo.service.ElasticDataPreparator;
 import com.google.gson.Gson;
 import org.apache.http.HttpEntity;
@@ -10,18 +14,27 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * Created by Ido on 2017/7/14.
  */
+@Service
 public class ElasticSearchServiceImpl  implements ElasticDataPreparator{
     private static  final String index = "test";
     private static final String type = "teacher";
     private static final String url = "http://localhost:9200";
+    @Autowired
+    private CoreTeacherSearchIndexService service;
 
     private static String getTeacherUrl(){
 
@@ -29,7 +42,7 @@ public class ElasticSearchServiceImpl  implements ElasticDataPreparator{
     }
 
     public static <T> String index(T obj) throws IOException {
-        // TODO serialize obj to json
+        //  serialize obj to json
         Gson gson = new Gson();
         String jsonString = gson.toJson(obj);
         // and to build the es get header
@@ -90,4 +103,12 @@ public class ElasticSearchServiceImpl  implements ElasticDataPreparator{
 
     }
 
+    @Override
+    public String getTeacherIndexJson() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        List result = service.findAll();
+        if(Objects.isNull(result)){
+            return "";
+        }
+        return ElasticDataPreparator.getBulkJsonString(result,CoreTeacherSearchIndex.class,"getTeacherID","xswy","core_teacher_search_index");
+    }
 }

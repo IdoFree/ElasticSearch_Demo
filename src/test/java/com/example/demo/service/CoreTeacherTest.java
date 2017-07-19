@@ -23,6 +23,8 @@ import java.util.List;
 public class CoreTeacherTest {
     @Autowired
     private CoreTeacherService service;
+    @Autowired
+    ElasticDataPreparator elasticDataPreparator;
 //    @Test
     public void testGetById(){
 
@@ -40,8 +42,16 @@ public class CoreTeacherTest {
     public void testToJsonFile() throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         List result = service.findAll();
         Assert.notNull(result,"empty result set");
-        ElasticDataPreparator.toJsonFile(ElasticDataPreparator.getBulkJsonString(result,CoreTeacher.class),"test.json");
+        ElasticDataPreparator.toJsonFile(ElasticDataPreparator.getBulkJsonString(result,CoreTeacher.class,null,"xswy","core_teacher"),"test.json");
     }
+
+
+    @Test
+    public void getTeacherIndex() throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
+        ElasticDataPreparator.toJsonFile(elasticDataPreparator.getTeacherIndexJson(),"TeacherIndex.json");
+    }
+
+
     @Test
     public void testGetBulkJsonString() throws IOException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         TeacherRepository repository = new TeacherRepository();
@@ -49,7 +59,7 @@ public class CoreTeacherTest {
         for(int i = 0; i < 10; i++){
             teachers.add(repository.getTeacher("name"+i,i));
         }
-        print(ElasticDataPreparator.getBulkJsonString(teachers,Teacher.class));
+        print(ElasticDataPreparator.getBulkJsonString(teachers,Teacher.class,null,"xswy","teacher"));
     }
 
     private void print(String s){
