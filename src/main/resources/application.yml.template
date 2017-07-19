@@ -1,0 +1,33 @@
+#server configuration
+server:
+    port: 8080
+
+#database configuration
+
+spring:
+  profiles:
+    active: default
+  jpa:
+    hibernate:
+      ddl-auto: update
+      naming-strategy: org.hibernate.cfg.DefaultNamingStrategy
+  datasource:
+    url: jdbc:mysql://admin.dev.51xuanshi.com:3326/xswy_new_dev?useUnicode=yes&characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    username: xswy
+    password: xswy_secret
+
+logging:
+  level:
+    root: INFO
+    org:
+      springframework:
+        web: DEBUG
+      hibernate: ERROR
+
+
+
+
+
+
+
+
