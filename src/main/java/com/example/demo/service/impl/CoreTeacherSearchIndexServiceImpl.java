@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.controller.requestmodel.ElasticSearchRequest;
 import com.example.demo.model.CoreTeacher;
 import com.example.demo.model.CoreTeacherSearchIndex;
 import com.example.demo.repository.CoreTeacherRepository;
@@ -39,6 +40,8 @@ public class CoreTeacherSearchIndexServiceImpl implements CoreTeacherSearchIndex
         }
         return resultList;
     }
+
+
 
     private CoreTeacherSearchIndex resultSetToTeacher(Object[] teacherinfo) throws IllegalAccessException {
         CoreTeacherSearchIndex ct = new CoreTeacherSearchIndex();

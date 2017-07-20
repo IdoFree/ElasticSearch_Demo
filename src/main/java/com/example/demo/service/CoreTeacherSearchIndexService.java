@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.requestmodel.ElasticSearchRequest;
 import com.example.demo.model.CoreTeacherSearchIndex;
 import org.springframework.stereotype.Service;
 

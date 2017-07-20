@@ -1,9 +1,13 @@
 package com.example.demo;
 
+import com.example.demo.controller.requestmodel.ElasticSearchRequest;
+import com.example.demo.model.CoreTeacherSearchIndex;
 import com.example.demo.model.ReturnObj;
 import com.example.demo.model.Teacher;
 import com.example.demo.repository.TeacherRepository;
 import com.example.demo.service.impl.ElasticSearchServiceImpl;
+import com.example.demo.util.StringUtil;
+import com.google.gson.Gson;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -31,5 +35,20 @@ public class TestES {
         Assert.assertNotNull(result);
 
 
+    }
+
+
+    @Test
+    public void testGsonString(){
+        Gson gson = new Gson();
+        ElasticSearchRequest request = new ElasticSearchRequest();
+        CoreTeacherSearchIndex coreTeacherSearchIndex = new CoreTeacherSearchIndex();
+        request.setTeacherSearchIndex(coreTeacherSearchIndex);
+        request.getTeacherSearchIndex().setCityName("广州");
+        request.getTeacherSearchIndex().setAvailableServices(new Byte("1"));
+        String jsonStr = gson.toJson(request.getTeacherSearchIndex());
+        jsonStr = jsonStr.substring(1,jsonStr.length()-1);
+        jsonStr.split(",")  ;
+        StringUtil.println(jsonStr);
     }
 }

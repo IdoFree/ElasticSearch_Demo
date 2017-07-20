@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.controller.requestmodel.ElasticSearchRequest;
 import com.google.gson.Gson;
 import sun.jvm.hotspot.utilities.Assert;
 
@@ -60,4 +61,9 @@ public interface ElasticDataPreparator {
     }
 
     String getTeacherIndexJson() throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
+
+    String search(ElasticSearchRequest request) throws IOException;
+
+    String searchAll() throws IOException;
+    public String search(String queryString) throws IOException;
 }
